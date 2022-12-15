@@ -11,7 +11,7 @@ export class ReciptPage {
     }
 
     verificarNombres(nombre, apellido) {
-        cy.get(this.selectorNames)
+       return cy.get(this.selectorNames)
         .invoke("text")
         .then (()=> {
             cy.contains(nombre + " " + apellido);
@@ -26,12 +26,8 @@ export class ReciptPage {
         return cy.get(this.cardNumber);
     }
 
-    verificarTotalAmount(total) {
+    verificarTotalAmount() {
         return cy.get(this.totalPrice)
-                 .invoke("text")
-                 .then(()=> {
-                    cy.contains(total);
-                 });
     }
 
 

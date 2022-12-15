@@ -89,10 +89,22 @@ describe("Pre-entrega", () => {
     
     reciptPage.verificarBotonThankYou().should("have.text", "Thank you");
     reciptPage.verificarNombres(datosCheckout.fristName, datosCheckout.lastName);
-    reciptPage.verificarProduct(dataProducts.product5.name).should("have.text", dataProducts.product5.name);
-    reciptPage.verificarProduct(dataProducts.product7.name).should("have.text", dataProducts.product7.name);
+    reciptPage.verificarProduct(dataProducts.product5.name)
+      .invoke("text")
+      .then(()=> {
+        cy.contains(dataProducts.product5.name);
+      });
+    reciptPage.verificarProduct(dataProducts.product7.name)
+      .invoke("text")
+      .then(()=> {
+        cy.contains(dataProducts.product7.name)
+      });
     reciptPage.verificarCadNumber().should("have.text", datosCheckout.numberCard);
-    reciptPage.verificarTotalAmount(suma);
+    reciptPage.verificarTotalAmount()
+      .invoke("text")
+      .then(()=>{
+        cy.contains(suma);
+      });
 
   });
 
