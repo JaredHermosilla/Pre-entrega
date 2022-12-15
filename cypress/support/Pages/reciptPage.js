@@ -10,12 +10,8 @@ export class ReciptPage {
         return cy.xpath(this.buttonThankYou, {timeout: 10000});
     }
 
-    verificarNombres(nombre, apellido) {
+    verificarNombres() {
        return cy.get(this.selectorNames)
-        .invoke("text")
-        .then (()=> {
-            cy.contains(nombre + " " + apellido);
-        });
     }
 
     verificarProduct(product){
